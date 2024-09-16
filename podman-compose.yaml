@@ -1,0 +1,17 @@
+---
+services:
+  syslog-ng-tester:
+    image: syslog-ng-tester:latest
+    container_name: syslog-ng-tester
+    environment:
+      - PUID=1000
+      - PGID=1000
+      - TZ=Etc/UTC
+    volumes:
+      - ./config:/etc/syslog-ng
+      - ./log:/var/log 
+      - ./opt:/opt
+    environment:
+      LOG_DELAY: 2
+      LOG_FEED: /opt/log_feed
+    restart: unless-stopped
